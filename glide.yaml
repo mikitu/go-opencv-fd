@@ -1,0 +1,5 @@
+package: github.com/mikitu/go-opencv-fd
+import:
+- package: github.com/lazywei/go-opencv
+  subpackages:
+  - opencv

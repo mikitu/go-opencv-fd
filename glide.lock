@@ -1,0 +1,8 @@
+hash: 5b974f622b224bbfbe5f386de92a5eeee75fbc2b4e8e5c3bf424e82281db1049
+updated: 2017-01-01T12:42:10.617165574Z
+imports:
+- name: github.com/lazywei/go-opencv
+  version: 76a80c792afab341300db33893a39c06b366787b
+  subpackages:
+  - opencv
+testImports: []
