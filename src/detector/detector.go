@@ -3,7 +3,6 @@ import(
 	"github.com/lazywei/go-opencv/opencv"
 	"fmt"
 	"os"
-	"path"
 )
 type DetectorExecutor struct {
 	win  *opencv.Window
@@ -23,6 +22,7 @@ func (d DetectorExecutor) Run(detectors []ObjectDetectorInterface) {
 		img := d.retreieveFrame()
 		for _, obj := range detectors {
 			obj.Detect(img)
+			obj.Draw(img)
 		}
 		d.win.ShowImage(img)
 
@@ -46,14 +46,6 @@ func (d DetectorExecutor) retreieveFrame() *opencv.IplImage {
 		os.Exit(0)
 	}
 	return img
-}
-
-func (d DetectorExecutor) LoadFile(file string) *opencv.HaarCascade {
-	cwd, err := os.Getwd()
-	if err != nil {
-		panic(err)
-	}
-	return opencv.LoadHaarClassifierCascade(path.Join(cwd, "algorithms/haarcascades/" + file))
 }
 
 func (d DetectorExecutor) Release() {

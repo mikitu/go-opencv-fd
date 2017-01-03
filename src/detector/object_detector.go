@@ -24,30 +24,29 @@ type HaarCascadeInterface interface {
 }
 type ObjectDetectorInterface interface {
 	Detect(img IplImageInterface)
-	Draw(img IplImageInterface, value *opencv.Rect)
+	Draw(img IplImageInterface)
 
 }
 
 type ObjectDetector struct{
 	Alg HaarCascadeInterface
+	objects []*opencv.Rect
 }
 
-func (d ObjectDetector) Detect(img IplImageInterface) {
-	faces := d.Alg.DetectObjects(img.(*opencv.IplImage))
+func (d *ObjectDetector) Detect(img IplImageInterface){
+	d.objects = d.Alg.DetectObjects(img.(*opencv.IplImage))
+}
 
-	for _, value := range faces {
-		d.Draw(img, value)
+func (d ObjectDetector) Draw(img IplImageInterface) {
+	for _, value := range d.objects {
+		opencv.Circle(img.(*opencv.IplImage),
+			opencv.Point{
+				value.X() + (value.Width() / 2),
+				value.Y() + (value.Height() / 2),
+			},
+			value.Width() / 2,
+			opencv.ScalarAll(255.0), 1, 1, 0)
 	}
-}
-
-func (d ObjectDetector) Draw(img IplImageInterface, value *opencv.Rect) {
-	opencv.Circle(img.(*opencv.IplImage),
-		opencv.Point{
-			value.X() + (value.Width() / 2),
-			value.Y() + (value.Height() / 2),
-		},
-		value.Width()/2,
-		opencv.ScalarAll(255.0), 1, 1, 0)
 }
 
 func LoadAlgorithm(file string) HaarCascadeInterface {

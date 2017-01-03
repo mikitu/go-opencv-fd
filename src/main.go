@@ -15,10 +15,9 @@ func main() {
 	fmt.Println("Press ESC to quit")
 
 	detectors := detector.NewDetectorsCollection()
-	d1:=detector.NewFaceDetector()
-	detectors.Add(d1)
-
+	detectors.Add(detector.NewFaceDetector())
 	detectors.Add(detector.NewEyesDetector())
+	detectors.Add(detector.NewNoseDetector())
 
 	executor := detector.NewDetectorExecutor(win)
 	defer executor.Release()
