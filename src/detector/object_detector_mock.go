@@ -178,10 +178,10 @@ func (_mr *_MockObjectDetectorInterfaceRecorder) Detect(arg0 interface{}) *gomoc
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "Detect", arg0)
 }
 
-func (_m *MockObjectDetectorInterface) Draw(img IplImageInterface, value *opencv.Rect) {
-	_m.ctrl.Call(_m, "Draw", img, value)
+func (_m *MockObjectDetectorInterface) Draw(img IplImageInterface) {
+	_m.ctrl.Call(_m, "Draw", img)
 }
 
-func (_mr *_MockObjectDetectorInterfaceRecorder) Draw(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Draw", arg0, arg1)
+func (_mr *_MockObjectDetectorInterfaceRecorder) Draw(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "Draw", arg0)
 }

@@ -10,7 +10,7 @@ import (
 func TestDetect(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	img := NewMockIplImageInterface(ctrl)
+	//img := NewMockIplImageInterface(ctrl)
 
 	Convey("Create a new object", t, func() {
 		fd := new(ObjectDetector)
@@ -18,7 +18,7 @@ func TestDetect(t *testing.T) {
 		Convey("Loaded algorithm should be opencv.HaarCascade type", func() {
 			So(fd.Alg, ShouldHaveSameTypeAs, new(opencv.HaarCascade))
 		})
-		fd.Detect(img)
+		//fd.Detect(img)
 
 	})
 }
